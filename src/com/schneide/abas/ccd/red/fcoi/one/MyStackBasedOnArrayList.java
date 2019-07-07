@@ -21,7 +21,7 @@ public class MyStackBasedOnArrayList<T> extends ArrayList<T> implements MyStack<
 	}
 
 	@Override
-	public int items() {
+	public int getSize() {
 		return size();
 	}
 }

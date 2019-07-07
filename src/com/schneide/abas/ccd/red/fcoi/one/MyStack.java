@@ -6,5 +6,5 @@ public interface MyStack<ELEMENT> {
 
 	public ELEMENT pop();
 
-	public int items();
+	public int getSize();
 }
