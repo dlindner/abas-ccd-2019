@@ -15,7 +15,7 @@ import org.junit.Test;
 
 import com.schneide.abas.ccd.orange.soc.one.ClickMeGame;
 
-public class ClickScoresPoint {
+public class TargetReactionTest {
 
 	@BeforeClass
 	public static void setUpOnce() {
