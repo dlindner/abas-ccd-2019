@@ -10,5 +10,7 @@
 	<classpathentry kind="lib" path="lib/mockito/byte-buddy-agent-1.9.10.jar"/>
 	<classpathentry kind="lib" path="lib/mockito/mockito-core-2.27.0.jar"/>
 	<classpathentry kind="lib" path="lib/mockito/objenesis-2.6.jar"/>
+	<classpathentry kind="lib" path="lib/assertj-swing/assertj-swing-3.9.2.jar"/>
+	<classpathentry kind="lib" path="lib/assertj-swing/fest-util-1.2.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
