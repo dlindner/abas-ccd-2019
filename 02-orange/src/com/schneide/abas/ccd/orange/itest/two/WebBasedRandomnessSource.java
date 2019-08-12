@@ -28,9 +28,11 @@ public class WebBasedRandomnessSource implements RandomnessSource {
 
 	private int queryMicroservice(int threshold) throws IOException {
 		URL url = new URL(this.url + "/" + threshold);
+		System.out.println("----> REQUEST: " + url);
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		connection.setRequestMethod("GET");
 		int status = connection.getResponseCode();
+		System.out.println("<---- RESPONSE: " + status);
 		if (200 != status) {
 			throw new IOException("Request failed");
 		}

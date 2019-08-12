@@ -12,8 +12,7 @@ public final class WebBasedClickMeGame {
 
 	public static void main(String[] arguments) {
 		final RandomnessSource rng = new WebBasedRandomnessSource("http://localhost:4567/rng");
-		//final Random rng = new Random(132L);
 		final Playground game = new Playground(rng);
-		game.start(true);
+		game.start((0 == arguments.length));
 	}
 }
