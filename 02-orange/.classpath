@@ -2,32 +2,6 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="lib/assertj/assertj-core-3.11.1.jar"/>
-	<classpathentry kind="lib" path="lib/hamcrest/java-hamcrest-2.0.0.0.jar"/>
-	<classpathentry kind="lib" path="lib/junit/hamcrest-junit-2.0.0.0.jar"/>
-	<classpathentry kind="lib" path="lib/junit/junit-4.12.jar"/>
-	<classpathentry kind="lib" path="lib/mockito/byte-buddy-1.9.10.jar"/>
-	<classpathentry kind="lib" path="lib/mockito/byte-buddy-agent-1.9.10.jar"/>
-	<classpathentry kind="lib" path="lib/mockito/mockito-core-2.27.0.jar"/>
-	<classpathentry kind="lib" path="lib/mockito/objenesis-2.6.jar"/>
-	<classpathentry kind="lib" path="lib/assertj-swing/assertj-swing-3.9.2.jar"/>
-	<classpathentry kind="lib" path="lib/assertj-swing/fest-util-1.2.5.jar"/>
-	<classpathentry kind="lib" path="lib/spark/javax.servlet-api-3.1.0.jar"/>
-	<classpathentry kind="lib" path="lib/spark/jetty-http-9.3.6.v20151106.jar"/>
-	<classpathentry kind="lib" path="lib/spark/jetty-io-9.3.6.v20151106.jar"/>
-	<classpathentry kind="lib" path="lib/spark/jetty-security-9.3.6.v20151106.jar"/>
-	<classpathentry kind="lib" path="lib/spark/jetty-server-9.3.6.v20151106.jar"/>
-	<classpathentry kind="lib" path="lib/spark/jetty-servlet-9.3.6.v20151106.jar"/>
-	<classpathentry kind="lib" path="lib/spark/jetty-util-9.3.6.v20151106.jar"/>
-	<classpathentry kind="lib" path="lib/spark/jetty-webapp-9.3.6.v20151106.jar"/>
-	<classpathentry kind="lib" path="lib/spark/jetty-xml-9.3.6.v20151106.jar"/>
-	<classpathentry kind="lib" path="lib/spark/slf4j-api-1.7.13.jar"/>
-	<classpathentry kind="lib" path="lib/spark/spark-core-2.5.jar"/>
-	<classpathentry kind="lib" path="lib/spark/websocket-api-9.3.6.v20151106.jar"/>
-	<classpathentry kind="lib" path="lib/spark/websocket-client-9.3.6.v20151106.jar"/>
-	<classpathentry kind="lib" path="lib/spark/websocket-common-9.3.6.v20151106.jar"/>
-	<classpathentry kind="lib" path="lib/spark/websocket-server-9.3.6.v20151106.jar"/>
-	<classpathentry kind="lib" path="lib/spark/websocket-servlet-9.3.6.v20151106.jar"/>
 	<classpathentry kind="lib" path="lib/mockserver/activation-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/mockserver/bcmail-jdk15on-1.56.jar"/>
 	<classpathentry kind="lib" path="lib/mockserver/bcpkix-jdk15on-1.56.jar"/>
@@ -70,5 +44,32 @@
 	<classpathentry kind="lib" path="lib/mockserver/rhino-1.7R4.jar"/>
 	<classpathentry kind="lib" path="lib/mockserver/uri-template-0.9.jar"/>
 	<classpathentry kind="lib" path="lib/mockserver/xercesImpl-2.4.0.jar"/>
+	<classpathentry kind="lib" path="lib/mockito/byte-buddy-1.9.10.jar"/>
+	<classpathentry kind="lib" path="lib/mockito/byte-buddy-agent-1.9.10.jar"/>
+	<classpathentry kind="lib" path="lib/mockito/mockito-core-2.27.0.jar"/>
+	<classpathentry kind="lib" path="lib/mockito/objenesis-2.6.jar"/>
+	<classpathentry kind="lib" path="lib/junit/hamcrest-junit-2.0.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/junit/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="lib/hamcrest/java-hamcrest-2.0.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/assertj-swing/assertj-swing-3.9.2.jar"/>
+	<classpathentry kind="lib" path="lib/assertj-swing/fest-util-1.2.5.jar"/>
+	<classpathentry kind="lib" path="lib/assertj/assertj-core-3.11.1.jar"/>
+	<classpathentry kind="lib" path="lib/spark/javax.servlet-api-3.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/spark/jetty-client-9.4.18.v20190429.jar"/>
+	<classpathentry kind="lib" path="lib/spark/jetty-http-9.4.18.v20190429.jar"/>
+	<classpathentry kind="lib" path="lib/spark/jetty-io-9.4.18.v20190429.jar"/>
+	<classpathentry kind="lib" path="lib/spark/jetty-security-9.4.18.v20190429.jar"/>
+	<classpathentry kind="lib" path="lib/spark/jetty-server-9.4.18.v20190429.jar"/>
+	<classpathentry kind="lib" path="lib/spark/jetty-servlet-9.4.18.v20190429.jar"/>
+	<classpathentry kind="lib" path="lib/spark/jetty-util-9.4.18.v20190429.jar"/>
+	<classpathentry kind="lib" path="lib/spark/jetty-webapp-9.4.18.v20190429.jar"/>
+	<classpathentry kind="lib" path="lib/spark/jetty-xml-9.4.18.v20190429.jar"/>
+	<classpathentry kind="lib" path="lib/spark/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="lib/spark/spark-core-2.9.1.jar"/>
+	<classpathentry kind="lib" path="lib/spark/websocket-api-9.4.18.v20190429.jar"/>
+	<classpathentry kind="lib" path="lib/spark/websocket-client-9.4.18.v20190429.jar"/>
+	<classpathentry kind="lib" path="lib/spark/websocket-common-9.4.18.v20190429.jar"/>
+	<classpathentry kind="lib" path="lib/spark/websocket-server-9.4.18.v20190429.jar"/>
+	<classpathentry kind="lib" path="lib/spark/websocket-servlet-9.4.18.v20190429.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
