@@ -65,7 +65,7 @@ public class Playground {
 		return result;
 	}
 
-	public void start(final boolean looping) {
+	public void start() {
 		EDT.performBlocking(() -> {
 			this.visualization.setVisible(true);
 		});
@@ -77,7 +77,7 @@ public class Playground {
 				} catch (InterruptedException e) {
 					Thread.currentThread().interrupt();
 				}
-			} while (looping);
+			} while (true);
 		}, "target creator");
 		fun.start();
 	}
