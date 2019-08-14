@@ -13,7 +13,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.schneide.abas.ccd.orange.soc.one.ClickMeGame;
+import com.schneide.abas.ccd.orange.itest.one.cut.TestedClickMeGame;
 
 public class TargetReactionTest {
 
@@ -26,7 +26,7 @@ public class TargetReactionTest {
 
 	@Before
 	public void setUp() {
-		ApplicationLauncher.application(ClickMeGame.class).withArgs("false").start();
+		ApplicationLauncher.application(TestedClickMeGame.class).withArgs("false").start();
 		window = new FrameFixture("game frame");
 		window.show();
 	}
