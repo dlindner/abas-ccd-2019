@@ -32,6 +32,7 @@ public class WebTargetReactionTest {
 	@Before
 	public void setUp() {
 		mockService = ClientAndServer.startClientAndServer(4567);
+		setupRandomnessAnswers();
 
 		ApplicationLauncher.application(WebBasedClickMeGame.class).withArgs("false").start();
 		window = new FrameFixture("game frame");
@@ -58,7 +59,6 @@ public class WebTargetReactionTest {
 
 	@Test
 	public void scoresPointOnTargetClick() {
-		setupRandomnessAnswers();
 		JPanelFixture clickField = window.panel("game field");
 		window.label("points").requireText("0");
 		clickField.robot().click(

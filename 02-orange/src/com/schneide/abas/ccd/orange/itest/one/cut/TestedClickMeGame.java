@@ -9,7 +9,7 @@ public final class TestedClickMeGame {
 	}
 
 	public static void main(String[] arguments) {
-		final Random rng = new Random(132L);
+		final Random rng = new Random(/*132L*/);
 //		final Random rng = new Random(132L) {
 //			private static final long serialVersionUID = -8817787675423572173L;
 //
@@ -20,6 +20,6 @@ public final class TestedClickMeGame {
 //			};
 //		};
 		final Playground game = new Playground(rng);
-		game.start((0 == arguments.length));
+		game.start(true /*(0 == arguments.length)*/);
 	}
 }
