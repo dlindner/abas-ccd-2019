@@ -1,4 +1,4 @@
-package com.schneide.abas.ccd.orange.soc.one;
+package com.schneide.abas.ccd.orange.itest.one.cut;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -65,7 +65,7 @@ public class Playground {
 		return result;
 	}
 
-	public void start() {
+	public void start(final boolean looping) {
 		EDT.performBlocking(() -> {
 			this.visualization.setVisible(true);
 		});
@@ -77,7 +77,7 @@ public class Playground {
 				} catch (InterruptedException e) {
 					Thread.currentThread().interrupt();
 				}
-			} while (true);
+			} while (looping);
 		}, "target creator");
 		fun.start();
 	}

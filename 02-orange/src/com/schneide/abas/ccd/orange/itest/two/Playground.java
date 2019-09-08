@@ -1,10 +1,9 @@
-package com.schneide.abas.ccd.orange.soc.one;
+package com.schneide.abas.ccd.orange.itest.two;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -12,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.schneide.abas.ccd.orange.itest.two.WebBasedClickMeGame.RandomnessSource;
 import com.schneide.abas.ccd.orange.soc.one.util.swing.EDT;
 
 public class Playground {
@@ -21,11 +21,11 @@ public class Playground {
 	private final JPanel targetField;
 	private final JLabel points;
 	private final JLabel remainingTargets;
-	private final Random rng;
+	private final RandomnessSource rng;
 	private int removedTargets;
 	private int targetCounter;
 
-	public Playground(Random rng) {
+	public Playground(RandomnessSource rng) {
 		super();
 		this.removedTargets = 0;
 		this.targetCounter = 0;
@@ -65,7 +65,7 @@ public class Playground {
 		return result;
 	}
 
-	public void start() {
+	public void start(final boolean looping) {
 		EDT.performBlocking(() -> {
 			this.visualization.setVisible(true);
 		});
@@ -73,11 +73,11 @@ public class Playground {
 			do {
 				addTarget();
 				try {
-					Thread.sleep(rng.nextInt(1000));
+					Thread.sleep(rng.randomInteger(1000));
 				} catch (InterruptedException e) {
 					Thread.currentThread().interrupt();
 				}
-			} while (true);
+			} while (looping);
 		}, "target creator");
 		fun.start();
 	}
@@ -87,8 +87,8 @@ public class Playground {
 			EDT.performBlocking(() -> {
 				final JButton newClick = randomButton();
 				newClick.setLocation(
-						this.rng.nextInt(400 - newClick.getWidth()),
-						this.rng.nextInt(400 - newClick.getHeight()));
+						this.rng.randomInteger(400 - newClick.getWidth()),
+						this.rng.randomInteger(400 - newClick.getHeight()));
 				System.out.println(newClick.getLocation());
 				this.targets.add(newClick);
 				this.targetField.add(newClick);
@@ -108,8 +108,8 @@ public class Playground {
 		result.setName("target-" + this.targetCounter);
 		this.targetCounter++;
 		result.setSize(
-				this.rng.nextInt(100) + 10,
-				this.rng.nextInt(50) + 5);
+				this.rng.randomInteger(100) + 10,
+				this.rng.randomInteger(50) + 5);
 		result.addActionListener(e -> {
 			this.targetField.remove(result);
 			synchronized (this.targets) {

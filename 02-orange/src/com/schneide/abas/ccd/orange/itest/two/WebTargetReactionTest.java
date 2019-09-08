@@ -1,5 +1,4 @@
-//		final Random rng = new Random(132L) {
-package com.schneide.abas.ccd.orange.itest.one;
+package com.schneide.abas.ccd.orange.itest.two;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -10,26 +9,52 @@ import org.assertj.swing.fixture.FrameFixture;
 import org.assertj.swing.fixture.JPanelFixture;
 import org.assertj.swing.launcher.ApplicationLauncher;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mockserver.integration.ClientAndServer;
+import org.mockserver.model.HttpRequest;
+import org.mockserver.model.HttpResponse;
 
-import com.schneide.abas.ccd.orange.itest.one.cut.TestedClickMeGame;
+import com.schneide.abas.ccd.orange.soc.one.ClickMeGame;
 
-public class TargetReactionTest {
+public class WebTargetReactionTest {
 
 	@BeforeClass
 	public static void setUpOnce() {
 		FailOnThreadViolationRepaintManager.install();
 	}
 
+	private ClientAndServer mockService;
 	private FrameFixture window;
 
 	@Before
 	public void setUp() {
-		ApplicationLauncher.application(TestedClickMeGame.class).withArgs("false").start();
+		mockService = ClientAndServer.startClientAndServer(4567);
+		setupRandomnessAnswers();
+
+		ApplicationLauncher.application(WebBasedClickMeGame.class).withArgs("false").start();
 		window = new FrameFixture("game frame");
 		window.show();
+	}
+
+	private void setupRandomnessAnswers() {
+		mockService.when(
+				HttpRequest.request().withMethod("GET").withPath("/rng/100"))
+	    				   .respond(HttpResponse.response().withStatusCode(200).withBody("91"));
+		mockService.when(
+				HttpRequest.request().withMethod("GET").withPath("/rng/50"))
+						   .respond(HttpResponse.response().withStatusCode(200).withBody("22"));
+		mockService.when(
+				HttpRequest.request().withMethod("GET").withPath("/rng/299"))
+						   .respond(HttpResponse.response().withStatusCode(200).withBody("94"));
+		mockService.when(
+				HttpRequest.request().withMethod("GET").withPath("/rng/373"))
+						   .respond(HttpResponse.response().withStatusCode(200).withBody("323"));
+		mockService.when(
+				HttpRequest.request().withMethod("GET").withPath("/rng/1000"))
+						   .respond(HttpResponse.response().withStatusCode(200).withBody("519"));
 	}
 
 	@Test
@@ -65,5 +90,7 @@ public class TargetReactionTest {
 	@After
 	public void tearDown() {
 		window.cleanUp();
+
+		mockService.stop();
 	}
 }

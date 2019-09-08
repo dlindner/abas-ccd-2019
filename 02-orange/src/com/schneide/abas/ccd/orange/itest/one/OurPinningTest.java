@@ -2,6 +2,7 @@
 package com.schneide.abas.ccd.orange.itest.one;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.*;
 
 import java.awt.Point;
 
@@ -16,12 +17,12 @@ import org.junit.Test;
 
 import com.schneide.abas.ccd.orange.itest.one.cut.TestedClickMeGame;
 
-public class TargetReactionTest {
+public class OurPinningTest {
 
-	@BeforeClass
-	public static void setUpOnce() {
-		FailOnThreadViolationRepaintManager.install();
-	}
+//	@BeforeClass
+//	public static void setUpOnce() {
+//		FailOnThreadViolationRepaintManager.install();
+//	}
 
 	private FrameFixture window;
 
@@ -31,35 +32,32 @@ public class TargetReactionTest {
 		window = new FrameFixture("game frame");
 		window.show();
 	}
-
+	
 	@Test
-	public void scoresPointOnTargetClick() {
-		JPanelFixture clickField = window.panel("game field");
+	public void buttonClickGivesAPoint() throws Exception {
 		window.label("points").requireText("0");
-		clickField.robot().click(
-				clickField.target(),
-				new Point(115, 325));
+		JPanelFixture clickField = window.panel("game field");
+		clickField.button("target-0").click();
 		window.label("points").requireText("1");
 	}
-
+	
+//	@Test
+//	public void everyButtonGivesAPoint() throws Exception {
+//		window.label("points").requireText("0");
+//		JPanelFixture clickField = window.panel("game field");
+//		for (int i = 0; i < 10; i++) {
+//			clickField.button("target-" + i).click();
+//			Thread.sleep(1000L);
+//		}
+//		window.label("points").requireText("10");
+//	}
+	
 	@Test
-	public void targetDisappearsIfHit() {
+	public void noPointForAMiss() throws Exception {
+		window.label("points").requireText("0");
 		JPanelFixture clickField = window.panel("game field");
-		assertThat(clickField.target().getComponentCount()).isEqualTo(1);
-		clickField.robot().click(
-				clickField.target(),
-				new Point(115, 325));
-		assertThat(clickField.target().getComponentCount()).isEqualTo(0);
-	}
-
-	@Test
-	public void targetCountAdjusts() {
-		JPanelFixture clickField = window.panel("game field");
-		window.label("targets").requireText("1");
-		clickField.robot().click(
-				clickField.target(),
-				new Point(115, 325));
-		window.label("targets").requireText("0");
+		clickField.robot().click(clickField.target(), new Point(75, 75));
+		window.label("points").requireText("0");
 	}
 
 	@After
