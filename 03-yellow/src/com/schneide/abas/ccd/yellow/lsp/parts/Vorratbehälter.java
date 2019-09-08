@@ -1,13 +1,17 @@
 package com.schneide.abas.ccd.yellow.lsp.parts;
 
+import java.util.function.Function;
+
 import com.schneide.abas.ccd.yellow.lsp.domain.Füllung;
 
 public class Vorratbehälter<F extends Füllung> {
 
+	private final Function<Integer, F> abgabe;
 	private int füllstand;
 
-	public Vorratbehälter() {
+	public Vorratbehälter(Function<Integer, F> abgabe) {
 		super();
+		this.abgabe = abgabe;
 		this.füllstand = 0;
 	}
 
@@ -15,7 +19,7 @@ public class Vorratbehälter<F extends Füllung> {
 		this.füllstand += füllung.menge();
 	}
 
-	public int hole(int kaffeeMenge) {
-		return Math.min(füllstand, kaffeeMenge);
+	public F hole(int menge) {
+		return this.abgabe.apply(Math.min(füllstand, menge));
 	}
 }
