@@ -2,6 +2,7 @@ package com.schneide.abas.ccd.yellow.lsp;
 
 import com.schneide.abas.ccd.yellow.lsp.domain.Espressobohnen;
 import com.schneide.abas.ccd.yellow.lsp.domain.KaffeeArt;
+import com.schneide.abas.ccd.yellow.lsp.domain.KaffeeArt.KaffeeAuswahlTeuer;
 import com.schneide.abas.ccd.yellow.lsp.domain.Kaffeegetränk;
 import com.schneide.abas.ccd.yellow.lsp.domain.Kaffeepulver;
 
@@ -22,9 +23,9 @@ public final class Main {
 		vertuo.füllePulverNach(new Kaffeepulver(250));
 		vertuo.fülleBohnenNach(new Espressobohnen(125));
 
-		final Kaffeegetränk zweiterKaffee = vertuo.kocheKaffee(KaffeeArt.filter);
+		final Kaffeegetränk zweiterKaffee = vertuo.kocheKaffee(KaffeeAuswahlTeuer.filter);
 		System.out.println(zweiterKaffee);
-		final Kaffeegetränk dritterKaffee = vertuo.kocheKaffee(KaffeeArt.espresso);
+		final Kaffeegetränk dritterKaffee = vertuo.kocheKaffee(KaffeeAuswahlTeuer.espresso);
 		System.out.println(dritterKaffee);
 
 		// TODO: Führe einfache und teure Kaffeemaschine zusammen!
