@@ -15,22 +15,18 @@ import com.schneide.abas.ccd.yellow.lsp.parts.Mahlwerk;
 import com.schneide.abas.ccd.yellow.lsp.parts.Vorratbehälter;
 import com.schneide.abas.ccd.yellow.lsp.parts.Wasserbehälter;
 
-public class TeureKaffeemaschine {
+public class TeureKaffeemaschine extends Kaffeemaschinenbasis {
 
-	private final Wasserbehälter wasserVorrat;
 	private final Vorratbehälter<Kaffeepulver> pulverVorrat;
 	private final Vorratbehälter<Espressobohnen> bohnenVorrat;
 	private final Mahlwerk mühle;
-    private final Brühgruppe brühgruppe;
     private final Map<KaffeeArt, Rezept> rezepte;
 
     public TeureKaffeemaschine() {
     	super();
-    	this.wasserVorrat = new Wasserbehälter();
     	this.pulverVorrat = new Vorratbehälter<>(Kaffeepulver::new);
     	this.bohnenVorrat = new Vorratbehälter<>(Espressobohnen::new);
         this.mühle = new Mahlwerk();
-        this.brühgruppe = new Brühgruppe();
         this.rezepte = new HashMap<>();
         this.rezepte.put(
         		KaffeeArt.filter,
@@ -40,10 +36,6 @@ public class TeureKaffeemaschine {
         		new Rezept(7, 30, Espresso::new));
     }
 
-    public void fülleWasserAuf(int wasser) {
-    	this.wasserVorrat.fülleMit(wasser);
-    }
-
     public void fülleBohnenNach(Espressobohnen neueBohnen) {
     	this.bohnenVorrat.fülleMit(neueBohnen);
     }
@@ -51,14 +43,17 @@ public class TeureKaffeemaschine {
     public void füllePulverNach(Kaffeepulver neuesPulver) {
     	this.pulverVorrat.fülleMit(neuesPulver);
     }
+    
+    @Override
+    public Kaffeegetränk kocheFilterkaffee() {
+    	return kocheKaffee(KaffeeArt.filter);
+    }
 
+    @Override
     public Kaffeegetränk kocheKaffee(KaffeeArt auswahl) {
     	Rezept rezept = this.rezepte.get(auswahl);
     	Kaffeepulver pulver = pulverFür(auswahl, rezept.kaffeeMenge());
-    	int wasser = this.wasserVorrat.zapfe(rezept.wasserMenge());
-
-    	int kaffee = this.brühgruppe.brüheAuf(pulver, wasser);
-    	return rezept.wendeAnAuf(kaffee);
+    	return brüheAuf(rezept, pulver);
     }
 
     private Kaffeepulver pulverFür(KaffeeArt auswahl, int menge) {

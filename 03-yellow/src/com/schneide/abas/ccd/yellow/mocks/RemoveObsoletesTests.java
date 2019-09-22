@@ -13,14 +13,13 @@ public class RemoveObsoletesTests {
 		Mockito.when(oldFile.isFile()).thenReturn(true);
 		Mockito.when(oldFile.length()).thenReturn(1L);
 		Mockito.when(oldFile.getName()).thenReturn("tested.txt");
-
 		Mockito.when(oldFile.lastModified()).thenReturn(System.currentTimeMillis() - 1_000_000_000L);
 		Mockito.when(oldFile.delete()).thenReturn(true);
 
 		RemoveObsoletes target = new RemoveObsoletes();
 		target.file(oldFile);
 
-		Mockito.verify(oldFile).delete();
+		Mockito.verify(oldFile, Mockito.times(1)).delete();
 	}
 
 	@Test

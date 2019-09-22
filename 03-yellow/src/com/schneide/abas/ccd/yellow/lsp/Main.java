@@ -13,7 +13,7 @@ public final class Main {
 		privileg.fülleWasserAuf(500);
 		privileg.füllePulverNach(new Kaffeepulver(30));
 
-		final Kaffeegetränk meinKaffee = privileg.kocheKaffee();
+		final Kaffeegetränk meinKaffee = privileg.kocheFilterkaffee();
 		System.out.println(meinKaffee);
 
 		final TeureKaffeemaschine vertuo = new TeureKaffeemaschine();
