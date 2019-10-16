@@ -12,25 +12,26 @@ import com.schneide.abas.ccd.green.lod.printer.PaperSize;
 import com.schneide.abas.ccd.green.lod.printer.PaperTray;
 import com.schneide.abas.ccd.green.lod.printer.Printer;
 
-public class PrintProcess {
+public class PDFPrinter {
 
-	public PrintProcess() {
+	private final Printer printer;
+
+	public PDFPrinter(Printer hardware) {
 		super();
+		this.printer = hardware;
 	}
 
-	public void printOn(
-			Printer printer,
-			File document) {
-		if (!printer.isOnline()) {
-			throw new RuntimeException("Printer " + printer.name() + " is not ready and/or online.");
+	public void printFile(File pdfDocument) {
+		if (!this.printer.isOnline()) {
+			throw new RuntimeException("Printer " + this.printer.name() + " is not ready and/or online.");
 		}
-		final PDFDocument printable = PDFDocument.loadFrom(document);
+		final PDFDocument printable = PDFDocument.loadFrom(pdfDocument);
 
 		// Find best-fitting paper tray
 		PageSize pageSize = printable.page().size();
-		Optional<PaperTray> bestTray = bestFittingTrayFor(pageSize, printer);
+		Optional<PaperTray> bestTray = bestFittingTrayFor(pageSize, this.printer);
 		PaperTray tray = bestTray.orElseThrow(
-				() -> new RuntimeException("Printer " + printer.name() + " has no paper of matching size."));
+				() -> new RuntimeException("Printer " + this.printer.name() + " has no paper of matching size."));
 
 		// Rotate the document if necessary
 		PaperSize paperSize = tray.properties().size();
@@ -46,14 +47,16 @@ public class PrintProcess {
 			}
 		}
 
-		boolean success = printer.spoolAs("PDF: " + document.getName())
-						         .withResolution(DPI.dpi600)
-						         .singleSided()
-						         .inColor()
-						         .turnedBy(rotationAngle)
-						         .send();
+		// Spool print job
+		boolean success = this.printer.spoolAs("PDF: " + pdfDocument.getName())
+						         	  .withResolution(DPI.dpi600)
+						         	  .singleSided()
+						         	  .inColor()
+						         	  .turnedBy(rotationAngle)
+						         	  .send();
+
 		if (!success) {
-			throw new RuntimeException("Printer " + printer.name() + " cannot print document.");
+			throw new RuntimeException("Printer " + this.printer.name() + " cannot print document.");
 		}
 	}
 
