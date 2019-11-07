@@ -5,6 +5,7 @@ import java.io.File;
 import java.util.Optional;
 
 import com.schneide.abas.ccd.green.lod.pdf.PDFDocument;
+import com.schneide.abas.ccd.green.lod.pdf.PDFPage;
 import com.schneide.abas.ccd.green.lod.pdf.PageSize;
 import com.schneide.abas.ccd.green.lod.printer.DPI;
 import com.schneide.abas.ccd.green.lod.printer.PageOrientation;
@@ -20,15 +21,26 @@ public class PDFPrinter {
 		super();
 		this.printer = hardware;
 	}
+	
+	private PageSize getSizeOf(PDFPage page) {
+		return page.size();
+	}
 
 	public void printFile(File pdfDocument) {
+		// LOD ok
 		if (!this.printer.isOnline()) {
+			// LOD ok
 			throw new RuntimeException("Printer " + this.printer.name() + " is not ready and/or online.");
 		}
+		// LOD ok
 		final PDFDocument printable = PDFDocument.loadFrom(pdfDocument);
 
 		// Find best-fitting paper tray
-		PageSize pageSize = printable.page().size();
+		// LOD ok
+		PDFPage page = printable.page();
+		// LOD BROKEN
+		PageSize pageSize = getSizeOf(page);
+		
 		Optional<PaperTray> bestTray = bestFittingTrayFor(pageSize, this.printer);
 		PaperTray tray = bestTray.orElseThrow(
 				() -> new RuntimeException("Printer " + this.printer.name() + " has no paper of matching size."));
