@@ -8,7 +8,7 @@ public class Examination_Tell {
 	public static void main(String[] args) {
 		IntStream.rangeClosed(1978, 2019)
 		         .mapToObj(Year::new)
-		         .forEach(year -> year.ifLeapYear(
+		         .forEach(year -> year.doIfLeapYear(
 		        		 				number -> System.out.println(number + " was a leap-year!"),
 		        		 				number -> System.out.println(number + " was a normal year.")));
 	}
@@ -21,7 +21,7 @@ public class Examination_Tell {
 			this.ac = ac;
 		}
 
-		public void ifLeapYear(
+		public void doIfLeapYear(
 				Consumer<Integer> thenAction,
 				Consumer<Integer> elseAction) {
 			if (this.ac % 4 == 0) {
